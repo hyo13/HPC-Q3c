@@ -41,10 +41,12 @@ int main() {
     }
     
     //IMPLICIT TIME INTEGRATION
+    double arg=0.5;
+    TriMatrix ML(-arg*v,x.size());
+    TriMatrix MR((1-arg)*v,x.size());
     vector <double> u0new(x.size());
-    TriMatrix M(-v,x.size());
     for (int i=0;i<Nt;i++){
-        u0new=M/u0;
+        u0new=ML/(MR*u0);
         u0=u0new;
     }
     
