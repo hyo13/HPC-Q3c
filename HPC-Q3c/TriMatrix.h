@@ -9,7 +9,6 @@
 #ifndef CLASS_TriMatrix
 #define CLASS_TriMatrix
 
-#include <stdio.h>
 #include <iostream>
 #include <vector>
 #include <math.h>

@@ -12,19 +12,17 @@
 #include "TriMatrix.h"
 using namespace std;
 
-int main() {
+int main(int argc, const char * argv[]) {
     
     // INPUTS
-    double L=1;
-    double Nx=10000;
-    double T=0.01;
-    double Nt=2000;
-    double alpha=0.001;
-    
+    double L=atof(argv[1]);
+    double Nx=atof(argv[2]);
+    double T=atof(argv[3]);
+    double Nt=atof(argv[4]);
+    double alpha=atof(argv[5]);
     //calculate minimum input time step for Forward Euler to converge with v = or < 0.5
     double dx=L/Nx;
     int Ntmin=2*alpha*T/(pow(dx,2));
-    
     //check that Nt is > or = Ntmax to make sure Forward Euler converges
     if (Nt<Ntmin){
         cout<<"ERROR: Input Nt is smaller than minimum time step allowed. Program Terminated."<<endl;
@@ -57,6 +55,7 @@ int main() {
     for (int i=0;i<Nt;i++){
         u0new=ML/(MR*u0);
         u0=u0new;
+        cout<<i<<endl;
     }
     
     //OUTPUT RESULTS
