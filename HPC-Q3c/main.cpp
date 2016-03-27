@@ -40,27 +40,23 @@ int main(int argc, const char * argv[]) {
     }
     
     //INITIAL CONDITION
-    vector <double> u0(x.size());
+    vector <double> u0(Nx+1);
     u0[1]=0;
     u0[x.size()]=0;
-    for (int i=1;i<x.size()-1;i++){
+    for (int i=1;i<Nx;i++){
         u0[i]=x[i]*(1-x[i]);
     }
     
     //IMPLICIT TIME INTEGRATION
     double arg=0.5;
-    TriMatrix ML(-arg*v,x.size());
-    TriMatrix MR((1-arg)*v,x.size());
-    vector <double> u0new(x.size());
+    TriMatrix ML(-arg*v,Nx+1);
+    TriMatrix MR((1-arg)*v,Nx+1);
+    vector <double> u0new(Nx+1);
     for (int i=0;i<Nt;i++){
         u0new=ML/(MR*u0);
+        //output result at Nx=L/2 at each time step
+        cout<<u0[(Nx+1)/2]<<" ";
         u0=u0new;
-        cout<<i<<endl;
-    }
-    
-    //OUTPUT RESULTS
-    for (int i=0;i<x.size();i++){
-        cout<<u0new[i]<<endl;
     }
     
     return 0;

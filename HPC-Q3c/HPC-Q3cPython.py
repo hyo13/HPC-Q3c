@@ -22,13 +22,14 @@ alpha=1
 #Compile C++ program
 subprocess.call('g++ main.cpp',shell=True)
 
+#Calculate RMS trendlines for Nx between 20 and 30 at increments of 2
 while (Nx<=30):
 
     #Initialize dt and RMS array
     DT=[]
     RMS=[]
     
-    #Calculate RMS Error for Nt between 800 and 2000 at increments of 50
+    #Calculate RMS Error for Nt between 2000 and 3000 at increments of 50
     Nt=2000
     while (Nt<=3000):
         #Initial Calculations
@@ -66,7 +67,7 @@ while (Nx<=30):
         
         #Nt Increment
         print("Nt= ",Nt)
-        Nt=Nt+50
+        Nt=Nt+100
         
     #Convert List to Array
     RMS=np.array(RMS)
@@ -81,6 +82,6 @@ while (Nx<=30):
 #Plot Configurations
 plt.grid(b=None, which='major', axis='both')
 plt.legend(loc='best')
-plt.title('Root Mean Squared Error of Forward Euler Time Integration')
+plt.title('Root Mean Squared Error of Crank-Nicolson Time Integration')
 plt.xlabel('dt (units)')
 plt.ylabel('dx (units)')
